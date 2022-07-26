@@ -1,0 +1,1 @@
+3333e8db9168304f276d0181ab6fc7a7afe3d102504fa51852a4bc876c1bab63  ./target/wasm32-unknown-unknown/release/cudos_name_service.wasm

@@ -1,7 +1,8 @@
 use cosmwasm_std::Addr;
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
-use cw_storage_plus::Map;
+
+use crate::state::TextRecord;
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct InstantiateMsg {}
@@ -9,7 +10,9 @@ pub struct InstantiateMsg {}
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum ExecuteMsg {
-    CreateRecord { name: String, id: String },
+    CreateDomain { name: String, ttl: u8, id: String },
+    TransferRecord { id: String, new: String },
+    CreateRecord { url: String, avatar: String, email: String, id: String },
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
@@ -21,7 +24,7 @@ pub enum QueryMsg {
 
 // We define a custom struct for each query response
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct RecordResponse {
+pub struct DomainResponse {
     pub entries: Vec<Entry>,
 }
 
@@ -29,4 +32,6 @@ pub struct RecordResponse {
 pub struct Entry {
     pub name: String,
     pub owner: Addr,
+    pub ttl: u8,
+    pub text_record: TextRecord,
 }
