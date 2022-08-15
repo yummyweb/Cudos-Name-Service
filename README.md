@@ -19,3 +19,14 @@ pub struct Domain {
     pub text_record: TextRecord,
 }
 ```
+
+Each `Domain` contains a text record of the type, `TextRecord`, which is given below:
+
+```
+pub struct TextRecord {
+    pub url: String,
+    pub avatar: String,
+    pub email: String,
+}
+```
+
